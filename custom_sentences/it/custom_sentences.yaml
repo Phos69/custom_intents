@@ -1,0 +1,17 @@
+language: "it"
+intents:
+  apriCancello:
+    data:
+      - sentences:
+          - "<open> [<the>] cancello"
+          - "apriti sesamo"
+  PersonHome:
+    data:
+      - sentences:
+          - "{name} è a casa?"  
+        requires_context:
+          domain: person
+responses:
+  intents:
+    apriCancello:
+      default: "Apro il cancello"

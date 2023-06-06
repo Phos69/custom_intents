@@ -1,0 +1,38 @@
+language: "it"
+intents:
+  HassCoverStop:
+    data:
+      - sentences:
+          - "<stop> [<the>] {name}"
+        requires_context:
+          domain: cover
+  HassCoverStopArea:
+    data:
+      - sentences:
+          - "<stop> <all> [<in>|<the>] {area}"
+  HassCoverStopDeviceClass:
+    data:
+      - sentences:
+          - "<stop> <all> [<the>] {cover_classes:device_class} [[<in>] casa]"
+          
+  HassCoverStopDeviceClassArea:
+    data:
+      - sentences:
+          - "<stop> [<all>] [<the>] {cover_classes:device_class} in {area}"
+  HassCoverStopAll:
+    data:
+      - sentences:
+          - "<stop> <all> [[<in>|<the>] casa]"
+
+responses:
+  intents:
+    HassCoverStop:
+      default: "{{slots.name}} fermata!"
+    HassCoverStopArea:
+      default: "Fermato tutto in {{slots.area}}"
+    HassCoverStopDeviceClass:
+      default: Fermate tutte le {{slots.device_class}} 
+    HassCoverStopDeviceClassArea:
+      default: Fermate {{slots.device_class}} in {{slots.area}}
+    HassCoverStopAll:
+      default: Fermato tutto in casa

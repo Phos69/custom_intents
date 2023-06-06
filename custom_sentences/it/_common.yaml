@@ -1,0 +1,33 @@
+lists:
+  position:
+    range:
+      type: percentage
+      from: 0
+      to: 100
+  # device_class:
+    # values:
+      # - in: "tend(a|e) da sole"
+        # out: awning
+      # - in: "persian(a|e)"
+        # out: blind
+      # - in: "tend(a|e)"
+        # out: curtain
+      # - in: "port(a|e)"
+        # out: door
+      # - in: "(serrand(a|e) | port(a|e) [basculant(e|i)|de(l|i) garage] | saracinesc(a|he))"
+        # out: garage
+      # - in: "cancell(o|i)"
+        # out: gate
+      # - in: "venezian(a|e)"
+        # out: shade
+      # - in: "tapparell(a|e)"
+        # out: shutter
+      # - in: "finestr(a|e)"
+        # out: window
+
+expansion_rules:
+  percent: "[%| percento]"
+  stop: "(ferm(a|are)|arrest(a|are))"
+  all: "tutt(o|i|a|e)"
+  climate: "(clima|climatizzator(e|i)|condizionator(e|i)|aria condizionata)"
+  fan: "(ventol(a|e) | ventilator(e|i) | ventilazione )"

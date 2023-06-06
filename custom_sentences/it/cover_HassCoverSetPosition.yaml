@@ -1,0 +1,43 @@
+language: "it"
+intents:
+  HassCoverSetPosition:
+    data:
+      - sentences:
+          - "(<open>|<close>|<set>) [<the>] {name} [<to>] {position}<percent>"
+          - "(<open>|<close>|<set>) [<to>] {position}<percent> [<the>] {name}"
+        requires_context:
+          domain: cover
+      - sentences:
+          - "(<open>|<close>|<set>) [<the>] {name} [<to>] metà"
+          - "(<open>|<close>|<set>) [<to>] metà [<the>] {name}"
+        requires_context:
+          domain: cover
+        slots:
+          position: "50"
+      - sentences:
+          - "(<open>|<close>|<set>) <all> [<the>] <cover> [<to>] metà"
+          - "(<open>|<close>|<set>) [<to>] metà <all> [<the>] <cover> [<to>]"
+        slots:
+          position: "50"
+          name: "Tapparelle Casa"
+      - sentences:
+          - "(<open>|<close>|<set>) <all> [<the>] <cover> [<to>] {position}<percent>"
+          - "(<open>|<close>|<set>) [<to>] {position}<percent> <all> [<the>] <cover>"
+        slots:
+          name: "Tapparelle Casa"
+        response: "all"
+  HassCoverSetPositionArea:
+    data:
+      - sentences:
+          - "(<open>|<close>|<set>) [<the>] <cover> [<in>|<of>] {area} [<to>] {position}<percent>"
+          - "(<open>|<close>|<set>) [<to>] {position}<percent> [<the>] <cover> [<in> | <of>] {area}"
+        slots:
+          domain: "cover"
+  
+responses:
+  intents:
+    HassCoverSetPosition:
+      default: "{{slots.name}} aperta al {{ slots.position }}%"
+      all: "Tutte le tapparelle aperte al {{ slots.position }}%"
+    HassCoverSetPositionArea:
+      default: "Tapparelle in {{slots.area}} aperte al {{ slots.position }}%"

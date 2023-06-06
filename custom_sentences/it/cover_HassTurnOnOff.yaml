@@ -1,0 +1,61 @@
+language: "it"
+intents:
+  HassTurnOn:
+    data:
+      - sentences:
+          - "<open> <all>" #Apri tutto
+          - "<open> [<all>] la casa" #Apri tutto
+        slots:
+          domain: "cover"
+        response: "cover_all"
+      - sentences:
+          - "<open> [<all>] [<the>] {cover_classes:device_class} [<in> | <of>] {area}" #apri tutte le tapparelle in salotto
+          - "<open> [<in> | <of>] {area} [<all>] [<the>] {cover_classes:device_class} " #apri tutte le tapparelle in salotto
+        response: "cover_device_class_area"
+        slots:
+          domain: cover
+      - sentences:
+          - "<open> <all> [<the>] {cover_classes:device_class}"
+          - "<open> [<all>] [<the>] {cover_classes:device_class} (<in> | <of>) casa"
+          - "<open> [(<in> | <of>) casa] [<all>] [<the>] {cover_classes:device_class}"
+        response: "cover_device_class"
+        slots:
+          domain: cover
+  HassTurnOff:
+    data:
+      - sentences:
+          - "<close> <all>" #Apri tutto
+          - "<close> [<all>] la casa" #Apri tutto
+        slots:
+          domain: "cover"
+        response: "cover_all"
+      - sentences:
+          - "<close> [<all>] [<the>] {cover_classes:device_class} [<in> | <of>] {area}" #apri tutte le tapparelle in salotto
+          - "<close> [<in> | <of>] {area} [<all>] [<the>] {cover_classes:device_class} " #apri tutte le tapparelle in salotto
+        response: "cover_device_class_area"
+        slots:
+          domain: cover
+      - sentences:
+          - "<close> <all> [<the>] {cover_classes:device_class}"
+          - "<close> [<all>] [<the>] {cover_classes:device_class} (<in> | <of>) casa"
+          - "<close> [(<in> | <of>) casa] [<all>] [<the>] {cover_classes:device_class}"
+        response: "cover_device_class"
+        slots:
+          domain: cover
+
+responses:
+  intents:
+    HassTurnOn:
+      cover: "Apro {{ slots.name }}"
+      cover_all: "Apro tutto"
+      cover_area: "Apro tutto in {{ slots.area }}"
+      cover_device_class: "Apro tutte le {{slots.device_class}}"
+      cover_device_class_area: "Apro tutte le {{slots.device_class}} in {{slots.area}}"
+      cover_garage: "Apro il garage"
+    HassTurnOff:
+      cover: "Chiudo {{ slots.name }}"
+      cover_all: "Chiudo tutto"
+      cover_area: "Chiudo tutto in {{ slots.area }}"
+      cover_device_class: "Chiudo tutte le {{slots.device_class}}"
+      cover_device_class_area: "Chiudo tutte le {{slots.device_class}} in {{slots.area}}"
+      cover_garage: "Chiudo il garage"

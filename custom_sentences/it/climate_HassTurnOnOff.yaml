@@ -1,0 +1,39 @@
+language: "it"
+intents:
+  HassTurnOn:
+    data:
+      - sentences: 
+          - "<turn_on> <all> [<the>] <climate>" # accendi tutti i climatizzatori
+          - "<turn_on> [<the>] <climate> <all>"
+        slots:
+          domain: climate
+        response: climate_all
+      - sentences:
+          - "<turn_on> [<the>] <climate> [<in> | <of>] {area}" # accendi il condizionatore in salotto
+          - "<turn_on> [<in> | <of>] {area} [<the>] <climate>"
+        slots:
+          domain: climate
+        response: climate_area
+  HassTurnOff:
+    data:
+      - sentences:
+          - "<turn_off> <all> [<the>] <climate>"
+          - "<turn_off> [<the>] <climate> <all>"
+        slots:
+          domain: climate
+        response: climate_all
+      - sentences:
+          - "<turn_off> [<the>] <climate> [<in> | <of>] {area}"
+          - "<turn_off> [<in> | <of>] {area} [<the>] <climate>"
+        slots:
+          domain: climate
+        response: climate_area
+
+responses:
+  intents:
+    HassTurnOn:
+      climate_all: "Ho acceso tutti i condizionatori"
+      climate_area: "Ho acceso i condizionatori in {{slots.area}}"
+    HassTurnOff:
+      climate_all: "Ho spento tutti i condizionatori"
+      climate_area: "Ho spento i condizionatori in {{slots.area}}"
