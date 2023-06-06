@@ -1,0 +1,29 @@
+#intent_script:
+       
+######### STOP COVER
+  HassCoverStop:
+    action:
+      service: "cover.stop_cover"
+      data:
+        entity_id: "{{ states.cover | selectattr('name', 'in', name) | map(attribute='entity_id') | list | first | default }}"
+  HassCoverStopArea:
+    action:
+      service: "cover.stop_cover"
+      data:
+        area_id: "{{area}}"
+  HassCoverStopDeviceClass:
+    action:
+      service: "cover.stop_cover"
+      data:
+        entity_id:  "{{ states.cover | selectattr('attributes.device_class', 'eq', device_class) | map(attribute='entity_id') | list }}"
+  HassCoverStopDeviceClassArea:
+    action:
+      service: "cover.stop_cover"
+      data:
+        entity_id:  "{{ states.cover | selectattr('attributes.device_class', 'eq', device_class) | selectattr('entity_id', 'in', area_entities(area))  | map(attribute='entity_id') | list }}"
+  HassCoverStopAll:  
+    action:
+      service: "cover.stop_cover"
+      data:
+        entity_id:  "{{ states.cover | map(attribute='entity_id') | list }}"
+

@@ -1,0 +1,16 @@
+#intent_script:
+######### SET COVER POSITION
+  HassCoverSetPosition:
+    action:
+      service: "cover.set_cover_position"
+      data:
+        entity_id: "{{ states.cover | selectattr('name', 'in', name) | map(attribute='entity_id') | list | first | default }}"
+        position: "{{ position }}"
+  HassCoverSetPositionArea:
+    action:
+      service: "cover.set_cover_position"
+      data:
+        area_id: "{{area}}"
+        position: "{{ position }}"
+        
+ 
